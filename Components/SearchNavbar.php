@@ -22,16 +22,27 @@ class SearchNavbar extends Component
 
     protected function getDataset()
     {
+        $items = collect([]);
         if($this->search) {
-            $items = collect([]);
-//            $companies = Company::ssearch($this->search, 5)->limit(5)->get()->map(function($r) {
-//                $r['item_type'] = 'company'; return $r;
-//            });
-//
-//            $items = $companies->merge(collect([]))->take(15);
-        } else {
-            $items = collect([]);
+
+            foreach(config('search.models') as $entity) {
+
+                $class = $entity['class'];
+                $scope = $entity['scope'];
+                $limit = $entity['limit'];
+
+                $its = (new $class)->$scope($this->search, $limit)->get()->map(function($r) use ($entity) {
+                    $r->item_type = strtolower(class_basename($entity['class']));
+                    $r->item_route = $entity['route'];
+                    $r->item_view = $entity['view'];
+                    return $r;
+                });
+
+                $items = $items->merge($its);
+               // dd($items);
+            }
         }
+
         return $items;
     }
 
@@ -42,9 +53,6 @@ class SearchNavbar extends Component
 
     public function render()
     {
-        //dd(auth()->user()->getRoleNames()->toArray(), auth()->user());
-
-
         $items = $this->getDataset();
 
         return view('search::views.search_navbar', [

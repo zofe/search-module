@@ -2,9 +2,32 @@
 
 This is a demo module for a Laravel application (>= 8) 
 
-Search module is designed to centralize the logic of a "global search" in the project. it searches the users, and potentially the main models of all other installed modules.
+Search module is designed to centralize the logic of a "global search" in the project. 
 
 # Installation & configuration 
+
+
+by default it search in a list of models you can define in the config file,
+for each model you need to specify:
+
+* the class
+* the query scope
+* the route (to link at result detail)
+* the query limit
+* the view (of the result item, to customize item appareance)
+
+
+```php
+    'models' => [
+        [
+            'class' => \App\Models\User::class,
+            'scope' => 'ssearch',
+            'route' => 'auth.users.view',
+            'limit' => 5,
+            'view'  => 'search::item',
+        ],
+    ]
+```
 
 Your laravel application must have rapyd-livewire package already installed first, then you can require this module using: 
 

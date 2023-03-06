@@ -27,14 +27,8 @@
         <div  class="dropdown-list dropdown-menu dropdown-menu-right shadow show" aria-labelledby="searchDropdown" style="margin-top:-0.6em">
 
             @forelse($items as $item)
-                @if($item->item_type =='company')
 
-                    <a tabindex="{{$loop->iteration}}" class="search-result dropdown-item d-flex align-items-center py-1" href="{{ route('companies.companies.view',$item->id) }}">
-                        <div>
-                            <span class="">{!! $item->badge !!} {{ $item->business_name }} </span>
-                        </div>
-                    </a>
-                @endif
+                @include($item->item_view)
 
             @empty
                 <div class="dropdown-item p-3">
