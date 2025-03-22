@@ -1,6 +1,6 @@
 {
     "name": "zofe/search-module",
-    "description": "search module for laravel rapyd-livewire application",
+    "description": "search module for laravel rapyd-admin application",
     "license": "mit",
     "type": "rapyd-module",
     "authors": [
@@ -10,19 +10,25 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0|^8.1|^8.2",
-        "illuminate/config": "^8.65|^9.0|^10.0",
-        "illuminate/contracts": "^8.65|^9.0|^10.0",
-        "livewire/livewire": "^2.0",
-        "zofe/rapyd-livewire": "dev-main|^0.8",
-        "zofe/rapyd-module-installer": "^0.0|^0.1",
-        "zofe/layout-module": "dev-main|^0.0|^0.1"
+        "php": "^8.2",
+        "illuminate/config": "^11.0|^12.0",
+        "illuminate/contracts": "^11.0|^12.0",
+        "laravel/scout": "^10.0",
+        "meilisearch/meilisearch-php": "^1.0",
+        "http-interop/http-factory-guzzle": "^1.0"
     },
     "config": {
         "allow-plugins": {
             "zofe/rapyd-module-installer": true
         }
     },
-    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "App\\Modules\\Search\\SearchServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Modules\Search\Components;
+namespace App\Modules\Search\Livewire;
 
 
-//use App\Models\Company;
-//use App\Traits\Authorize;
+
 use Livewire\Component;
 
 
@@ -20,12 +19,19 @@ class SearchNavbar extends Component
     protected $listeners = [
     ];
 
+    public function booted()
+    {
+    }
+
     protected function getDataset()
     {
         $items = collect([]);
         if($this->search) {
 
+
+            dd(config('search.models'));
             foreach(config('search.models') as $entity) {
+
 
                 $class = $entity['class'];
                 $scope = $entity['scope'];
@@ -55,7 +61,7 @@ class SearchNavbar extends Component
     {
         $items = $this->getDataset();
 
-        return view('search::views.search_navbar', [
+        return view('search::search_navbar', [
             'items' => $items,
         ]);
     }
