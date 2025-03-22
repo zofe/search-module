@@ -43,3 +43,7 @@ this component:
 has the logic of "global search" in the project.
 searches the users, and potentially the main models of all other installed modules.
 
+
+# Installation & configuration
+
+This module is part of [Rapyd Admin](https://github.com/zofe/rapyd-admin) package
