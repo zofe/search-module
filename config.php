@@ -12,7 +12,7 @@ return [
     'models' => [
         [
             'class' => \App\Models\User::class,
-            'scope' => 'ssearch',
+            'scope' => 'search',
             'route' => 'auth.users.view',
             'limit' => 5,
             'view'  => 'search::item',

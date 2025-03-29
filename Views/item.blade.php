@@ -1,5 +1,1 @@
-<a tabindex="{{$loop->iteration}}" class="search-result dropdown-item d-flex align-items-center py-1" href="{{ route_lang($item->item_route, $item->id) }}">
-    <div>
-        <span class="">{{ $item->name }}</span>
-    </div>
-</a>
+ <div><i class="fas fa-fw fa-user"></i> {{ $item->name }}</div>
